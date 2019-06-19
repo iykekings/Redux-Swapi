@@ -19,23 +19,24 @@ export const setSuccess = () => {
 export const setFailure = error => {
     return {
         type: FAILURE,
-        error
+        payload: error
     }
 }
 
 export const setCharacters = characters => {
     return {
         type: FETCHING,
-        characters
+        payload: characters
     }
 }
 
 export const getCharacters = () => dispatch => {
     Axios.get('https://swapi.co/api/people/')
         .then(res => {
-            debugger
+            dispatch(setCharacters(res.data.results))
+            dispatch(setSuccess())
         })
         .catch(err => {
-            debugger
+            dispatch(setFailure(err.message))
         })       
 }
