@@ -16,7 +16,7 @@ export const charsReducer = (state = initialState, action) => {
     case SUCCESS:
       return {...state, fetching: false}
     case FAILURE:
-      return {...state, fetching: false, error: 'There was an error'}
+      return {...state, fetching: false, error: action.error}
     default:
       return state;
   }
